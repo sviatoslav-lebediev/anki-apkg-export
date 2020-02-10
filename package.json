@@ -2,7 +2,7 @@
   "name": "anki-apkg-export",
   "description": "Generate decks for Anki (spaced repetition software)",
   "version": "4.0.2",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "dependencies": {
     "jszip": "^3.2.2",
     "sha1": "^1.1.1",

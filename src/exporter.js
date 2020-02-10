@@ -46,9 +46,7 @@ export default class {
 
     media.forEach((item, i) => zip.file(i, item.data));
 
-    if (process.env.APP_ENV === 'browser' || typeof window !== 'undefined') {
-      return zip.generateAsync(Object.assign({}, { type: 'blob' }, options));
-    } else {
+    if (isNodeEnv()) {
       return zip.generateAsync(
         Object.assign(
           {},
@@ -60,6 +58,8 @@ export default class {
           options
         )
       );
+    } else {
+      return zip.generateAsync(Object.assign({}, { type: 'blob' }, options));
     }
   }
 
@@ -156,3 +156,12 @@ export const getLastItem = obj => {
 
   return item;
 };
+
+
+export const isNodeEnv = () => {
+  if (process.env.APKG_IS_NODE === 'true') {
+    return true;
+  }
+
+  return !!(process.env.APP_ENV === 'browser' || typeof window !== 'undefined');
+}

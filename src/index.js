@@ -1,13 +1,13 @@
-import Exporter from './exporter';
+import Exporter, { isNodeEnv } from './exporter';
 import createTemplate from './template';
 
 let sql;
 
-if (process.env.APP_ENV === 'browser' || typeof window !== 'undefined') {
+if (isNodeEnv()) {
+  sql = require('sql.js');
+} else {
   require('script-loader!sql.js');
   sql = window.SQL;
-} else {
-  sql = require('sql.js');
 }
 
 export { Exporter };
