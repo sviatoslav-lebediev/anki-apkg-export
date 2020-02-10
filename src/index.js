@@ -1,14 +1,7 @@
-import Exporter, { isNodeEnv } from './exporter';
-import createTemplate from './template';
+import Exporter from "./exporter";
+import createTemplate from "./template";
 
-let sql;
-
-if (isNodeEnv()) {
-  sql = require('sql.js');
-} else {
-  require('script-loader!sql.js');
-  sql = window.SQL;
-}
+const sql = require("sql.js");
 
 export { Exporter };
 
